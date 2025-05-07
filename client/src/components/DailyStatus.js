@@ -28,7 +28,7 @@ const DailyStatus=()=>{
             <div className="container">
                 <h2>Mark Daily Status</h2>
                 <input type="text" readOnly={!enableNameField} placeholder="Enter your Name" value={nameFieldTxtBox} onChange={onUserNameInputChange}/>
-                {showMarkingStatusBtn && <button disabled={!enableMarkingStatus} onClick={handleOnClick}> Start Marking Status </button>}
+                {showMarkingStatusBtn && <button disabled={!enableMarkingStatus} onClick={handleOnClick}> Submit </button>}
                 {showTaskList && <div id="item-list">
                     <ul class="checklist">
                         <li><label><input type="checkbox" /> Chanting without mobile</label></li>
