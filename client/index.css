@@ -100,12 +100,6 @@ button:disabled {
   gap:50px;
 }
 
-.header > .header-action > button{
-  width:150px;
-  height: auto;
-  font-family: var(--font-heading);
-}
-
 .body{
   display: flex;
   justify-content: space-between;
