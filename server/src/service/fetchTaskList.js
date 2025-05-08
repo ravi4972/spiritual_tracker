@@ -19,3 +19,20 @@ export async function fetchTaskList() {
     console.error("❌ Error fetching data:", err);
   }
 }
+
+export async function fetchUserDetails(emailId) {
+  try {
+    const query = `
+      select * from users where lower(email_id) = '${emailId.toLowerCase()}'
+    `;
+    console.log(query)
+
+    const result = await pool.query(query);
+
+    console.log("User details",result.rows[0]);
+    return result.rows[0]
+  } catch (err) {
+    console.error("❌ Error fetching data:", err);
+  }
+}
+
