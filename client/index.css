@@ -58,7 +58,7 @@ button {
   border: none;
   padding: 0.6rem 1.2rem;
   font-size: 1rem;
-  border-radius: 999px;
+  border-radius: 5px;
   cursor: pointer;
   transition: background 0.3s ease;
   font-weight: 600;
@@ -125,8 +125,40 @@ button:disabled {
   gap:10px;
 }
 
-.checklist{
-  margin:20px 0 0 0 ;
-  padding:0;
+.checklist {
   list-style: none;
+  padding-left: 0;
+  margin: 1.5rem 0;
+}
+
+.checklist li {
+  background-color: #f7f5f2;
+  border: 1px solid #e0e0e0;
+  border-left: 5px solid #a3c9a8; /* soft green accent */
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.2s ease;
+}
+
+.checklist li:hover {
+  background-color: #f1f0ed;
+}
+
+.checklist input[type="checkbox"] {
+  accent-color: #6a9f84; /* custom checkbox color */
+  width: 1.2rem;
+  height: 1.2rem;
+  margin-right: 0.75rem;
+  cursor: pointer;
+}
+
+.checklist label {
+  cursor: pointer;
+  user-select: none;
+  color: #444;
+  font-weight: 500;
 }
