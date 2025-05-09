@@ -4,9 +4,7 @@ const Body=()=>{
     return(
         <div className="body">
             <DailyStatus/>
-        </div>
-        
-        
+        </div>        
     )
 }
 

@@ -25,7 +25,16 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  min-width: 300px;
+  min-height: 300px;
+}
+
+.container > .container-header{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
 
 h2, h3 {
@@ -102,19 +111,9 @@ button:disabled {
 
 .body{
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   padding:0 20px;
   margin-top: 10px;
-}
-
-.body > .left-container{
-  width:300px;
-  height: auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap:10px;
 }
 
 #item-list{
@@ -129,6 +128,9 @@ button:disabled {
   list-style: none;
   padding-left: 0;
   margin: 1.5rem 0;
+  max-height: 250px; /* Adjust height as needed */
+  overflow-y: auto;  /* Enable vertical scrolling */
+  padding-right: 20px; /* Optional: to prevent scrollbar from covering text */
 }
 
 .checklist li {
