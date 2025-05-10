@@ -9,13 +9,15 @@ const DailyStatus=()=>{
     const [emailFieldTxtBox,setEmailFieldTxtBox] = useState('')
 
     const [userDetails, setUserDetails] = useState({})
+    const [showUserDataLoader, setShowUserDataLoader] = useState(false)
 
     async function handleOnClick(){
         setShowMarkingStatusBtn(false)
+        setEnableEmailField(false)
+        setShowUserDataLoader(()=>true)
         const response = await fetchUserDetails(emailFieldTxtBox)
         setUserDetails(response.data)
         setShowTaskList(true)
-        setEnableEmailField(false)
         setEmailFieldTxtBox(()=>`Hello ${response?.data?.name}`)
     }
 
@@ -34,11 +36,11 @@ const DailyStatus=()=>{
 
     return(
             <div className="container">
-                <div class="container-header">
+                <div className="container-header">
                     <h2>Mark Daily Status</h2>
                     <input type="text" readOnly={!enableEmailField} placeholder="Enter your Email" value={emailFieldTxtBox} onChange={onUserEmailInputChange}/>
-                    {showMarkingStatusBtn && <button disabled={!enableMarkingStatus} onClick={handleOnClick}> Submit </button>}
-                
+                    {!showUserDataLoader && showMarkingStatusBtn && <button disabled={!enableMarkingStatus} onClick={handleOnClick}> Submit </button>}
+                    {showUserDataLoader && !userDetails.id && <img className="loader" src="https://media.tenor.com/iwlEtmR4BCcAAAAj/loading-gif.gif" alt="loader-img"/>}
                 </div>
                 {showTaskList && <div id="item-list">
                     <ul className="checklist">
