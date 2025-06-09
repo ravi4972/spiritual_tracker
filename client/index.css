@@ -85,6 +85,24 @@ button:hover {
   color: #fff;
 }
 
+.link{
+  text-decoration: none;
+  background-color: #5c7f67;
+  color: #ffffff;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  font-weight: 600;
+}
+
+.link:hover {
+  background-color: #3d5a48;  /* Darker on hover for better UX */
+  color: #fff;
+}
+
 button:disabled {
   background-color: #ccc;       /* Soft gray for disabled state */
   color: #666;                  /* Dimmed text */
@@ -183,4 +201,15 @@ button:disabled {
 .loader{
   width:150px;
   height:150px;
+}
+
+.about-us {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.about-us div{
+  width:500px;
 }

@@ -10,15 +10,23 @@ const DailyStatus=()=>{
 
     const [userDetails, setUserDetails] = useState({})
     const [showUserDataLoader, setShowUserDataLoader] = useState(false)
+    const [noUserFound, setNoUserFound] = useState(false)
 
     async function handleOnClick(){
         setShowMarkingStatusBtn(false)
         setEnableEmailField(false)
         setShowUserDataLoader(()=>true)
         const response = await fetchUserDetails(emailFieldTxtBox)
-        setUserDetails(response.data)
-        setShowTaskList(true)
-        setEmailFieldTxtBox(()=>`Hello ${response?.data?.name}`)
+        if(response.data){
+            setShowUserDataLoader(()=>false)
+            setUserDetails(response.data)
+            setShowTaskList(true)
+            setEmailFieldTxtBox(()=>`Hello ${response?.data?.name}`)
+        } else{
+            console.log('no user found')
+            setNoUserFound(true)
+            setShowUserDataLoader(()=>false)
+        }
     }
 
     function onUserEmailInputChange(e){
@@ -41,6 +49,7 @@ const DailyStatus=()=>{
                     <input type="text" readOnly={!enableEmailField} placeholder="Enter your Email" value={emailFieldTxtBox} onChange={onUserEmailInputChange}/>
                     {!showUserDataLoader && showMarkingStatusBtn && <button disabled={!enableMarkingStatus} onClick={handleOnClick}> Submit </button>}
                     {showUserDataLoader && !userDetails.id && <img className="loader" src="https://media.tenor.com/iwlEtmR4BCcAAAAj/loading-gif.gif" alt="loader-img"/>}
+                    {noUserFound && !showMarkingStatusBtn && <h3>No user found</h3>}
                 </div>
                 {showTaskList && <div id="item-list">
                     <ul className="checklist">
