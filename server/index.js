@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 
-import {fetchTaskList, fetchUserDetails, fetchStandardTaskList} from './src/service/fetchTaskList.js'
+import {fetchTaskList, fetchUserDetails, fetchStandardTaskList, updateStandardTaskStatus} from './src/service/fetchTaskList.js'
 
 const app = express()
 
@@ -26,6 +26,19 @@ app.get('/user', (req, res) => {
     fetchUserDetails(emailId).then(data=>res.send(data))
     .catch((err)=>res.send(err))
   });
+
+app.post('/user/:userId/standard-task', async (req, res) => {
+  const { userId } = req.params;
+  const { date, status } = req.body;
+  try {
+    await updateStandardTaskStatus(userId, date, status);
+    res.status(200).json({ message: 'Standard task status saved successfully.' });
+  } catch (error) {
+    console.error('Error updating standard task status:', error);
+    res.status(500).json({ error: 'Failed to update task status.' });
+  }
+});
+
 
 app.listen(5000,()=>{
     console.log('server is up on port 5000')

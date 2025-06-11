@@ -46,3 +46,18 @@ export async function fetchStandardTaskList(){
     console.error("Error occured while fetching standard task list")
   }
 }
+
+export async function updateStandardTaskStatus(userId, date, status) {
+  console.log(userId, date, status)
+  const query = `
+    INSERT INTO users_standard_task_status(user_id, date, status)
+    VALUES ($1, $2, $3::JSONB)
+  `;
+  try {
+    const result = await pool.query(query, [userId, date, JSON.stringify(status)]);
+    return result;
+  } catch (err) {
+    console.error("Error occurred while inserting standard task status:", err);
+    throw err;
+  }
+}
