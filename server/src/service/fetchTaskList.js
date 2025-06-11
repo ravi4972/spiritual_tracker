@@ -36,3 +36,13 @@ export async function fetchUserDetails(emailId) {
   }
 }
 
+export async function fetchStandardTaskList(){
+  try{
+    const query = 'Select * from standard_task'
+    const result = await pool.query(query);
+
+    return result.rows
+  }catch(err){
+    console.error("Error occured while fetching standard task list")
+  }
+}
